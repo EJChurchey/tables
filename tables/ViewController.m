@@ -10,6 +10,9 @@
 
 @interface ViewController ()
 @property NSArray* StudentNames;
+@property (weak, nonatomic) IBOutlet UITextField *txtStudent;
+
+@property (strong, nonatomic) IBOutlet UITableView *tblStudents;
 
 @end
 
@@ -17,7 +20,11 @@ NSString* CELL_NAME = @"Cell";
 
 @implementation ViewController
 
-
+- (IBAction)addNewStudent:(id)sender {
+    NSString* newStudent = [[self txtStudent] text];
+    [self setStudentNames: [[self StudentNames] arrayByAddingObject: newStudent]];
+    [[self tblStudents] reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setStudentNames: @[@"EJ", @"Liz", @"Jared"]];
